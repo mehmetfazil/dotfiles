@@ -3,6 +3,6 @@
 curl -X POST \
        	-H "Content-Type: application/json"\
        	-H "$DIGITALOCEAN_AUTH" \
-       	-d '{"name":"vpn","region":"fra1","size":"s-1vcpu-1gb","image":"40866349","ssh_keys":null,"backups":false,"ipv6":true,"user_data":null,"private_networking":null,"volumes": null,"tags":["vpn"]}' \
+       	-d '{"name":"vpn","region":"fra1","size":"s-1vcpu-1gb","image":"'"$DIGITALOCEAN_IMAGE_VPN"'","ssh_keys":null,"backups":false,"ipv6":true,"user_data":null,"private_networking":null,"volumes": null,"tags":["vpn"]}' \
        	"https://api.digitalocean.com/v2/droplets" 
 
