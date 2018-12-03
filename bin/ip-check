@@ -1,0 +1,34 @@
+#!/bin/bash
+# Script to notify public ip change with telegram messenger
+
+TOKEN=${TELEGRAM_TOKEN_FAZILSHELLBOT}
+CHAT_ID=${TELEGRAM_CHATID_X200}
+URL="https://api.telegram.org/bot$TOKEN/sendMessage"
+
+#The file that contains the current pubic IP
+PUBLIC_IP_FILE="$HOME/var/ipv4external"
+ 
+#Get the current public IP from whatsmyip.com
+CURRENT_IP=$(curl -s https://ipinfo.io/ip )
+ 
+#Check file for previous IP address
+if [ -f $PUBLIC_IP_FILE ]; then
+KNOWN_IP=$(cat $PUBLIC_IP_FILE)
+else
+KNOWN_IP=
+fi
+ 
+#See if the IP has changed
+if [ "$CURRENT_IP" != "$KNOWN_IP" ]; then
+ 
+#If so, update the public ip file and send a telegram message
+echo $CURRENT_IP > $PUBLIC_IP_FILE
+
+# Send telegram message
+curl -s -X POST $URL -d chat_id=$CHAT_ID -d text="$CURRENT_IP" > /dev/null 2>&1
+# Also Update duckdns record
+echo url=${DUCKDNS_URL_HOME} | curl -k -o ~/var/duck.log -K -
+
+
+fi
+

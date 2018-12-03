@@ -1,0 +1,7 @@
+#!/bin/bash
+
+while true
+	do
+		xsetroot -name "%$(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status) # $(date +"%R")"
+		sleep 60s;
+	done
