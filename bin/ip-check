@@ -1,6 +1,11 @@
 #!/bin/bash
 # Script to notify public ip change with telegram messenger
 
+# Pick environment variables for cron. It is necessary to ensure script runs before login.
+source /home/fazil/.secrets
+# This is not an elegant way
+HOME="/home/fazil"
+
 TOKEN=${TELEGRAM_TOKEN_FAZILSHELLBOT}
 CHAT_ID=${TELEGRAM_CHATID_X200}
 URL="https://api.telegram.org/bot$TOKEN/sendMessage"
