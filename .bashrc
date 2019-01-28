@@ -21,3 +21,4 @@ alias reload-cfg-bash='source ~/.bashrc'
 alias yt='youtube-dl'
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias p='python'
